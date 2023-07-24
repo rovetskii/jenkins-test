@@ -19,6 +19,39 @@ pipeline{
 //                     deleteDir()
 //                 }
 //             }
+        stage('Setup parameters') {
+            steps {
+                script {
+                    properties([
+                        parameters([
+//                             choice(
+//                                 choices: ['ONE', 'TWO'],
+//                                 name: 'PARAMETER_01'
+//                             ),
+                            booleanParam(
+                                defaultValue: true,
+                                description: 'Include tests',
+                                name: 'isTest'
+                            )
+//                             text(
+//                                 defaultValue: '''
+//                                 this is a multi-line
+//                                 string parameter example
+//                                 ''',
+//                                  name: 'MULTI-LINE-STRING'
+//                             ),
+//                             string(
+//                                 defaultValue: 'scriptcrunch',
+//                                 name: 'STRING-PARAMETER',
+//                                 trim: true
+//                             )
+                        ])
+                    ])
+                }
+            }
+        }
+
+
             stage ('maven build') {
                 steps {
                    sh '''
@@ -35,6 +68,11 @@ pipeline{
                   }
             }
             stage ('Test') {
+                when {
+                    expression {
+                            params.isTest == true
+                    }
+                }
                   steps {
                       sh 'mvn clean test'
                   }
