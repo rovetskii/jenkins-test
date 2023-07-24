@@ -29,11 +29,12 @@ tools {
 
                     '''
                 }
-          stage ('Build') {
-              steps {
-                  sh 'mvn clean compile'
-              }
-          }
+            }
+            stage ('Build') {
+                  steps {
+                      sh 'mvn clean compile'
+                  }
+            }
      }
 //             stage('Code Checkout') {
 //                 steps {
