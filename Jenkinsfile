@@ -9,11 +9,15 @@ pipeline{
                     sh 'ls -la'
                 }
             }
-            stage('Delete workspace before') {
-                steps {
-                    echo 'deleting workspace'
-                    deleteDir()
-                }
+//             stage('Delete workspace before') {
+//                 steps {
+//                     echo 'deleting workspace'
+//                     deleteDir()
+//                 }
+//             }
+            stage ('maven buils') {
+                sh "maven build"
+                sh 'mvn clean package'
             }
      }
 //             stage('Code Checkout') {
