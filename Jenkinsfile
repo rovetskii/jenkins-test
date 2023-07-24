@@ -1,5 +1,6 @@
 pipeline{
     agent any
+    def mvnHome = tool'M2_HOME'
     stages {
             stage('Hello') {
                 steps {
@@ -18,8 +19,8 @@ pipeline{
             stage ('maven build') {
                 steps {
                      echo 'maven build'
-                     sh 'mvn -v'
-                     sh 'mvn clean compile'
+                     echo '${M2_HOME}'
+                     sh '${M2_HOME}/bin/mvn clean compile'
                 }
 
             }
