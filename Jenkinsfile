@@ -19,9 +19,10 @@ pipeline{
             stage ('maven build') {
                 steps {
                      echo 'maven build'
-                     echo '${M2_HOME}'
+                     sh 'source /etc/profile.d/maven.sh'
+                     echo '${MAVEN_HOME}'
                      sh 'mvn -v'
-                     sh '${M2_HOME}/bin/mvn clean compile'
+                     sh '$mvn clean compile'
                 }
 
             }
