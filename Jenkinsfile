@@ -22,7 +22,7 @@ pipeline{
                      //sh 'source /etc/profile.d/maven.sh'
                      echo '${MAVEN_HOME}'
                      sh 'mvn -v'
-                     sh '$mvn clean compile'
+                     sh 'mvn clean compile'
                 }
 
             }
