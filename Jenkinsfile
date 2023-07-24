@@ -1,6 +1,6 @@
 pipeline{
     agent any
-    def mvnHome = tool'M2_HOME'
+    def mvnHome = tool 'M2_HOME'
     stages {
             stage('Hello') {
                 steps {
