@@ -27,7 +27,7 @@ tools {
                      echo 'maven build'
                      echo "MAVEN_HOME=${MAVEN_HOME}"
                      echo "PATH=${PATH}"
-                     sh 'mvn -v'
+                     mvn -v
                      withMaven(
                         //traceability: true
                         sh 'mvn clean compile'
