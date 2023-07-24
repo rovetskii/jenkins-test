@@ -15,9 +15,12 @@ pipeline{
 //                     deleteDir()
 //                 }
 //             }
-            stage ('maven buils') {
-                sh "maven build"
-                sh 'mvn clean package'
+            stage ('maven build') {
+                steps {
+                     echo 'maven build'
+                     sh 'mvn clean package'
+                }
+
             }
      }
 //             stage('Code Checkout') {
