@@ -3,7 +3,6 @@ pipeline{
 //     def mvnHome = tool 'M2_HOME'
 tools {
     maven 'Maven 3.3.9'
-    jdk 'jdk17'
 }
     stages {
             stage('Hello') {
@@ -22,20 +21,19 @@ tools {
 //             }
             stage ('maven build') {
                 steps {
-
                    sh '''
                      echo 'maven build'
                      echo "MAVEN_HOME=${MAVEN_HOME}"
                      echo "PATH=${PATH}"
                      mvn -v
-                     withMaven(
-                        //traceability: true
-                        sh 'mvn clean compile'
-                     )
+
                     '''
                 }
-
-            }
+          stage ('Build') {
+              steps {
+                  sh 'mvn clean compile'
+              }
+          }
      }
 //             stage('Code Checkout') {
 //                 steps {
