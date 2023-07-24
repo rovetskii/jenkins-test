@@ -1,6 +1,10 @@
 pipeline{
     agent any
 //     def mvnHome = tool 'M2_HOME'
+tools {
+    maven 'Maven 3.3.9'
+    jdk 'jdk17'
+}
     stages {
             stage('Hello') {
                 steps {
@@ -18,11 +22,17 @@ pipeline{
 //             }
             stage ('maven build') {
                 steps {
+
+                   sh ' ' '
                      echo 'maven build'
-                     //sh 'source /etc/profile.d/maven.sh'
-                     echo '${MAVEN_HOME}'
+                     echo "MAVEN_HOME=${MAVEN_HOME}"
+                     echo "PATH=${PATH}"
                      sh 'mvn -v'
-                     sh 'mvn clean compile'
+                     withMaven(
+                        //traceability: true
+                        sh 'mvn clean compile'
+                     )
+                    ' ' '
                 }
 
             }
