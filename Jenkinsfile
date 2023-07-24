@@ -23,7 +23,7 @@ tools {
             stage ('maven build') {
                 steps {
 
-                   sh ' ' '
+                   sh '''
                      echo 'maven build'
                      echo "MAVEN_HOME=${MAVEN_HOME}"
                      echo "PATH=${PATH}"
@@ -32,7 +32,7 @@ tools {
                         //traceability: true
                         sh 'mvn clean compile'
                      )
-                    ' ' '
+                    '''
                 }
 
             }
