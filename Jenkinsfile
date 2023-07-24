@@ -1,9 +1,9 @@
 pipeline{
     agent any
 //     def mvnHome = tool 'M2_HOME'
-tools {
-    maven 'Maven 3.3.9'
-}
+    tools {
+        maven 'Maven 3.9.3'
+    }
     stages {
             stage('Hello') {
                 steps {
