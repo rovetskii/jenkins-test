@@ -26,13 +26,17 @@ pipeline{
                      echo "MAVEN_HOME=${MAVEN_HOME}"
                      echo "PATH=${PATH}"
                      mvn -v
-
                     '''
                 }
             }
             stage ('Build') {
                   steps {
                       sh 'mvn clean compile'
+                  }
+            }
+            stage ('Test') {
+                  steps {
+                      sh 'mvn clean test'
                   }
             }
      }
