@@ -80,15 +80,13 @@ pipeline{
             }
             stage ('BUILD') {
                 steps {
-                    sh 'pwd'
-                    sh 'ls -la'
-                    dir('jenkins-test') {
+//                     dir('jenkins-test') {
                         sh 'pwd'
                         sh 'ls -la'
                         sh 'docker -v'
                         sh 'docker build -t irovetskyi/jenkins-test:0.0.2 .'
                         sh 'docker images'
-                    }
+//                     }
                 }
             }
 
