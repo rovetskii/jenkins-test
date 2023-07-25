@@ -62,7 +62,7 @@ pipeline{
                     '''
                 }
             }
-            stage ('Build') {
+            stage ('COMPILE') {
                   steps {
                       sh 'mvn clean compile'
                   }
@@ -77,6 +77,12 @@ pipeline{
                       sh 'mvn clean test'
                   }
             }
+            stage ('BUILD') {
+                sh 'pwd'
+                sh 'docker build -t irovetskyi/jenkins-test:0.0.1 .'
+
+            }
+
      }
 //             stage('Code Checkout') {
 //                 steps {
