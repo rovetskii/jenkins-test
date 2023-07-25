@@ -84,6 +84,7 @@ pipeline{
                     dir('jenkins-test') {
                         sh 'pwd'
                         sh 'ls -la'
+                        sh 'docker -v'
                         sh 'docker build -t irovetskyi/jenkins-test:0.0.1 .'
                         //sh 'docker image list'
                     }
