@@ -85,7 +85,7 @@ pipeline{
                         sh 'pwd'
                         sh 'ls -la'
                         sh 'docker -v'
-                        sh 'docker build -f Dockerfile -t irovetskyi/jenkins-test:0.0.1 .'
+                        sh 'docker build -t irovetskyi/jenkins-test:0.0.1 .'
                         //sh 'docker image list'
                     }
                 }
