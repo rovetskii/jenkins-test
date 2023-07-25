@@ -78,9 +78,11 @@ pipeline{
                   }
             }
             stage ('BUILD') {
-                sh 'pwd'
-                sh 'docker build -t irovetskyi/jenkins-test:0.0.1 .'
-                sh 'docker image list'
+                steps {
+                    sh 'pwd'
+                    sh 'docker build -t irovetskyi/jenkins-test:0.0.1 .'
+                    sh 'docker image list'
+                }
             }
 
      }
