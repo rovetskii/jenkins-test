@@ -89,6 +89,14 @@ pipeline{
 //                     }
                 }
             }
+            stage ('Push') {
+                steps {
+                    withDockerRegistry(credentialsId:'jenkins-hub', url:'https://index.docker.io/v1/') {
+                        sh 'docker push irovetskyi/jenkins-test:0.0.2'
+                    }
+
+                }
+            }
 
      }
 //             stage('Code Checkout') {
