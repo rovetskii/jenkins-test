@@ -65,6 +65,7 @@ pipeline{
             stage ('COMPILE') {
                   steps {
                       sh 'mvn clean package -DskipTests'
+                      sh 'ls -la'
                   }
             }
             stage ('Test') {
