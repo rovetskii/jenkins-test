@@ -38,7 +38,6 @@ pipeline {
                     dir("${WORKSPACE}") {
                        echo 'build image'
                        sh 'pwd'
-                       echo 'build image'
                         sh 'docker build -t rovetskyi/jenkins-test:0.0.3 .'
                     }
                 }
