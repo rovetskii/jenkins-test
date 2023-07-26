@@ -10,6 +10,7 @@ pipeline {
             description: 'Include tests',
             name: 'isTest'
         )
+        workspace = env.WORKSPACE
     }
     stages {
         stage('Package') {
@@ -35,9 +36,9 @@ pipeline {
         }
         stage ('Build') {
                 steps {
-                    dir("${WORKSPACE}") {
-                       echo 'build image'
-                       sh 'pwd'
+                     echo 'build image'
+                    sh "cd ${WORKSPACE}"
+                    sh 'pwd'
                         sh 'docker build -t rovetskyi/jenkins-test:0.0.3 .'
                     }
                 }
