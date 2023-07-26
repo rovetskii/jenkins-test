@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     workspaceDir = "${WORKSPACE}"
-                    echo ${WORKSPACE}
+                    echo "${WORKSPACE}"
                 }
             }
         }
