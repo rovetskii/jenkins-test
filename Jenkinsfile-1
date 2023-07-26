@@ -8,14 +8,14 @@ pipeline {
         )
     }
     environment {
-        JAVA_TOOL_OPTIONS="-Duser.home=/var/maven"
+        //JAVA_TOOL_OPTIONS="-Duser.home=/var/maven"
     }
     stages {
         stage('Package') {
             agent {
                 docker {
                     image 'maven:3.9.3-eclipse-temurin-17'
-                    args '-v /var/lib/jenkins/workspace/.m2:/var/maven/.m2 -e MAVEN_CONFIG=/var/maven/.m2'
+                    args '-v /var/lib/jenkins/workspace/.m2:/root/.m2/'
                     reuseNode true
                 }
             }
