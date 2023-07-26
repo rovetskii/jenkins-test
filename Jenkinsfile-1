@@ -1,43 +1,41 @@
 pipeline {
-    agent none
-    stages {
-        stage('Setup parameters') {
-            steps {
-                script {
-                    properties([
-                        parameters([
-                            booleanParam(
-                                defaultValue: true,
-                                description: 'Include tests',
-                                name: 'isTest'
-                            )
-                        ])
-                    ])
-                }
-            }
+    agent {
+        docker {
+            image 'maven:3.9.3-eclipse-temurin-17'
         }
+    }
+    parameters: {
+        booleanParam(
+            defaultValue: true,
+            description: 'Include tests',
+            name: 'isTest'
+        )
+    }
+    stages {
         stage('Package') {
-            agent {
-                docker {
-                    image 'maven:3.9.3-eclipse-temurin-17'
-                }
-            }
             steps {
                 sh '''
                 echo 'build jar'
                 mvn --version
                 mvn clean package -DskipTests
                 '''
-              when {
-                    expression {
-                        params.isTest == true
-                    }
-                    echo ('testing')
-                    sh 'mvn test'
+            }
+       }
+       stage ('Test') {
+          when {
+                expression {
+                    ${params.isTest} == true
                 }
+
+            }
+            steps {
+                echo ('testing')
+                sh 'mvn test'
+            }
+        }
+        stage ('Build') {
                 echo 'build image'
                 sh 'docker build -t rovetskyi/jenkins-test:0.0.3 .'
-            }
         }
         stage('Front end') {
             agent {
