@@ -11,14 +11,13 @@ pipeline {
             description: 'Include tests',
             name: 'isTest'
         )
-        //workspace = env.WORKSPACE
     }
     stages {
         stage('Initializing globals') {
             steps {
                 script {
                     workspaceDir = "${WORKSPACE}"
-                    echo workspaceDir
+                    echo ${WORKSPACE}
                 }
             }
         }
