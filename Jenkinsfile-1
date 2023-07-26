@@ -1,4 +1,3 @@
-def workspaceDir
 pipeline {
     agent none
     parameters {
@@ -8,15 +7,6 @@ pipeline {
             name: 'isTest'
         )
     }
-    stages {
-        stage('Initializing globals') {
-            steps {
-                script {
-                    workspaceDir = "${WORKSPACE}"
-                    echo "${WORKSPACE}"
-                }
-            }
-        }
         stage('Package') {
             agent {
                 docker {
