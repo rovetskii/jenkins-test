@@ -1,7 +1,7 @@
 pipeline {
     agent none
     stages {
-      stage('Setup parameters') {
+        stage('Setup parameters') {
             steps {
                 script {
                     properties([
@@ -28,16 +28,16 @@ pipeline {
                 mvn --version
                 mvn clean package -DskipTests
                 '''
-            }
-            when {
-                expression {
-                        params.isTest == true
+                when {
+                    expression {
+                            params.isTest == true
+                    }
                 }
+                  steps {
+                      echo ('testing')
+                      sh 'mvn test'
+                  }
             }
-          steps {
-              echo ('testing')
-              sh 'mvn test'
-          }
         }
         stage ('Build') {
             steps {
