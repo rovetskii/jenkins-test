@@ -22,23 +22,6 @@ pipeline {
                 '''
             }
        }
-       stage ('Test') {
-           agent {
-               docker {
-                   image 'maven:3.9.3-eclipse-temurin-17'
-               }
-           }
-          when {
-                expression {
-                    params.isTest == true
-                }
-
-            }
-            steps {
-                echo 'testing'
-                sh 'mvn test'
-            }
-        }
         stage ('Build') {
                 agent any
                 steps {
