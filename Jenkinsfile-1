@@ -16,7 +16,7 @@ pipeline {
                 }
             }
         }
-        stage('Package and Test') {
+        stage('Package') {
             agent {
                 docker {
                     image 'maven:3.9.3-eclipse-temurin-17'
@@ -28,15 +28,22 @@ pipeline {
                 mvn --version
                 mvn clean package -DskipTests
                 '''
-                when {
+            }
+        stage('Testing stage') {
+               agent {
+                    docker {
+                        image 'maven:3.9.3-eclipse-temurin-17'
+                    }
+                }
+              when {
                     expression {
                             params.isTest == true
                     }
                 }
-                  steps {
-                      echo ('testing')
-                      sh 'mvn test'
-                  }
+              steps {
+                  echo ('testing')
+                  sh 'mvn test'
+              }
             }
         }
         stage ('Build') {
