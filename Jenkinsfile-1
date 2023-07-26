@@ -18,6 +18,7 @@ pipeline {
             }
             steps {
                 sh '''
+                echo '$HOME'
                 echo 'build jar'
                 mvn --version
                 mvn clean install -DskipTests
