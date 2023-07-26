@@ -9,13 +9,7 @@ pipeline {
     }
     stages {
         stage('Package') {
-            agent {
-                docker {
-                    image "maven:3.9.3-eclipse-temurin-17"
-                    args "-v ${env.HOME}/.m2: /root/.m2:z -u root"
-                    reuseNode true
-                }
-            }
+            agent any
             steps {
                 sh '''
                 echo '${env.HOME}'
