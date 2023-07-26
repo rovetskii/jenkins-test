@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:jre
+FROM khipu/openjdk17-alpine
 
 ARG JAR_FILE=target/demo-0.0.1-SNAPSHOT.jar
 
