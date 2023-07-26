@@ -1,7 +1,22 @@
 pipeline {
     agent none
     stages {
-        stage('Back end') {
+      stage('Setup parameters') {
+            steps {
+                script {
+                    properties([
+                        parameters([
+                            booleanParam(
+                                defaultValue: true,
+                                description: 'Include tests',
+                                name: 'isTest'
+                            )
+                        ])
+                    ])
+                }
+            }
+        }
+        stage('Package and Test') {
             agent {
                 docker {
                     image 'maven:3.9.3-eclipse-temurin-17'
@@ -14,6 +29,15 @@ pipeline {
                 mvn clean package -DskipTests
                 '''
             }
+            when {
+                expression {
+                        params.isTest == true
+                }
+            }
+          steps {
+              echo ('testing')
+              sh 'mvn test'
+          }
         }
         stage ('Build') {
             steps {
