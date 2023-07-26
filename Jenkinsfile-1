@@ -12,7 +12,7 @@ pipeline {
             agent any
             steps {
                 sh '''
-                echo "${env.HOME}"
+                echo '$HOME'
                 echo 'build jar'
                 mvn --version
                 mvn clean install -DskipTests
