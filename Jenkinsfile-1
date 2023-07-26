@@ -9,17 +9,16 @@ pipeline {
     }
     stages {
         stage('Package') {
-           echo '$HOME'
             agent {
                 docker {
                     image "maven:3.9.3-eclipse-temurin-17"
-                    args "-v $HOME/.m2: /root/.m2:z -u root"
+                    args "-v ${env.HOME}/.m2: /root/.m2:z -u root"
                     reuseNode true
                 }
             }
             steps {
                 sh '''
-                echo '$HOME'
+                echo '${env.HOME}'
                 echo 'build jar'
                 mvn --version
                 mvn clean install -DskipTests
