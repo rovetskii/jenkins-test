@@ -34,8 +34,10 @@ pipeline {
             }
         }
         stage ('Build') {
-                echo 'build image'
+            steps {
+                 echo 'build image'
                 sh 'docker build -t rovetskyi/jenkins-test:0.0.3 .'
+            }
         }
         stage('Front end') {
             agent {
