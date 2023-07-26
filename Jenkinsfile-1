@@ -10,7 +10,7 @@ pipeline {
             description: 'Include tests',
             name: 'isTest'
         )
-        workspace = env.WORKSPACE
+        //workspace = env.WORKSPACE
     }
     stages {
         stage('Package') {
