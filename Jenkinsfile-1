@@ -1,4 +1,5 @@
 pipeline {
+    def workspaceDir
     agent {
         docker {
             image 'maven:3.9.3-eclipse-temurin-17'
@@ -13,6 +14,13 @@ pipeline {
         //workspace = env.WORKSPACE
     }
     stages {
+        stage('Initializing globals') {
+            steps {
+                script {
+                    workspaceDir = "${WORKSPACE}"
+                }
+            }
+
         stage('Package') {
             steps {
                 sh '''
@@ -37,9 +45,9 @@ pipeline {
         stage ('Build') {
                 steps {
                      echo 'build image'
-                    sh 'cd ${WORKSPACE}'
+                    sh "cd ${workspaceDir}"
                     sh 'pwd'
-                        sh 'docker build -t rovetskyi/jenkins-test:0.0.3 .'
+                    sh 'docker build -t rovetskyi/jenkins-test:0.0.3 .'
                 }
         }
         stage('Front end') {
