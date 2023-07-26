@@ -29,6 +29,7 @@ pipeline {
                 mvn clean package -DskipTests
                 '''
             }
+        }
         stage('Testing stage') {
                agent {
                     docker {
