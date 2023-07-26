@@ -35,7 +35,7 @@ pipeline {
         }
         stage ('Build') {
                 steps {
-                    dir('$WORKSPACE') {
+                    dir('env.WORKSPACE') {
                        echo 'build image'
                        sh 'pwd'
                        echo 'build image'
