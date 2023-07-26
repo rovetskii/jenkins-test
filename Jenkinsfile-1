@@ -34,14 +34,14 @@ pipeline {
             }
         }
         stage ('Build') {
-            dir('$WORKSPACE') {
                 steps {
-                   echo 'build image'
-                   sh 'pwd'
-                   echo 'build image'
-                    sh 'docker build -t rovetskyi/jenkins-test:0.0.3 .'
+                    dir('$WORKSPACE') {
+                       echo 'build image'
+                       sh 'pwd'
+                       echo 'build image'
+                        sh 'docker build -t rovetskyi/jenkins-test:0.0.3 .'
+                    }
                 }
-            }
         }
         stage('Front end') {
             agent {
