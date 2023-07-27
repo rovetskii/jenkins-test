@@ -18,7 +18,7 @@ pipeline {
         stage('Package') {
             steps {
                 sh '''
-                echo '$HOME'
+                echo "${env.HOME}"
                 echo 'build jar'
                 mvn --version
                 mvn clean install -DskipTests
@@ -26,7 +26,6 @@ pipeline {
             }
        }
         stage ('Build') {
-            agent any
             steps {
                 echo 'build image'
                 sh 'pwd'
