@@ -5,6 +5,7 @@ pipeline {
         docker {
           image DOCKER_MAVEN_IMAGE
           args DOCKER_MAVEN_ARGS
+          reuseNode true
         }
       }
     parameters {
