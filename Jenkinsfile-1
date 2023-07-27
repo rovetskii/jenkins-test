@@ -29,6 +29,7 @@ pipeline {
         stage ('Build') {
             steps {
                 echo 'build image'
+                sh "cd ${env.WORKSPACE}"
                 sh 'pwd'
                 sh 'docker build -t rovetskyi/jenkins-test:0.0.3 .'
             }
