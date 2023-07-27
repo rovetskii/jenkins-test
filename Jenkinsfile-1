@@ -1,3 +1,5 @@
+DOCKER_MAVEN_IMAGE = 'maven:3.5.2-jdk-8-alpine'
+DOCKER_MAVEN_ARGS = '-v $HOME/.m2:/root/.m2'
 pipeline {
     agent none
     parameters {
@@ -8,14 +10,14 @@ pipeline {
         )
     }
     stages {
-        stage('Package') {
-            agent {
-                docker {
-                    image 'maven:3.9.3-eclipse-temurin-17'
-                    args '-v /var/lib/jenkins/workspace/.m2:/root/.m2/'
-                    reuseNode true
-                }
+        stage('load') {
+          agent {
+            docker {
+              image DOCKER_MAVEN_IMAGE
+              args DOCKER_MAVEN_ARGS
             }
+          }
+        stage('Package') {
             steps {
                 sh '''
                 echo '$HOME'
@@ -26,12 +28,11 @@ pipeline {
             }
        }
         stage ('Build') {
-                agent any
-                steps {
-                    echo 'build image'
-                    sh 'pwd'
-                    sh 'docker build -t rovetskyi/jenkins-test:0.0.3 .'
-                }
+            steps {
+                echo 'build image'
+                sh 'pwd'
+                sh 'docker build -t rovetskyi/jenkins-test:0.0.3 .'
+            }
         }
         stage('Front end') {
             agent {
