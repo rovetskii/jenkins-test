@@ -27,6 +27,7 @@ pipeline {
             }
        }
         stage ('Build') {
+            agent any
             steps {
                 echo 'build image'
                 sh 'pwd'
